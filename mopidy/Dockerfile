@@ -36,7 +36,7 @@ RUN \
         python3-gi=3.38.0-2 \
         python3-gst-1.0=1.18.3-1 \
         zlib1g-dev=1:1.2.11.dfsg-2+deb11u2 \
-        mopidy=3.3.0-1 \
+        mopidy=3.4.1-1 \
         mopidy-alsamixer=2.0.1-1 \
         mopidy-local=3.2.1-1 \
         mopidy-mpd=3.3.0-1 \
@@ -46,7 +46,7 @@ RUN \
     \
     && curl https://bootstrap.pypa.io/get-pip.py | python3 \
     && pip3 install --no-cache-dir -r /tmp/requirements.txt \
-    # && pip3 install --force-reinstall --no-binary :all: cffi \
+    && pip3 install --force-reinstall --no-binary :all: cffi \
     \
     && find /usr/local \
         \( -type d -a -name test -o -name tests -o -name '__pycache__' \) \

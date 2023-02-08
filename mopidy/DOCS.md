@@ -1,4 +1,4 @@
-# Home Assistant Community Add-on: Mopidy
+# Home Assistant Community Add-on: Mopidy (v3.4.1-1)
 
 Mopidy plays music from local disk, Youtube, Spotify, SoundCloud, Google Play Music,
 and more. You edit the playlist from any phone, tablet, or computer using a
