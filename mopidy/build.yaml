@@ -1,6 +1,6 @@
 ---
 build_from:
-  amd64: docker.io/thibaudmathieu/mopidy-hassio:new
+  amd64: docker.io/thibaudmathieu/mopidy-hassio:1
 labels:
   org.opencontainers.image.title: "Home Assistant Add-on: Mopidy"
   org.opencontainers.image.description: "Media player Mopidy"
