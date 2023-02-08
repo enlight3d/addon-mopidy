@@ -46,6 +46,7 @@ RUN \
     \
     && curl https://bootstrap.pypa.io/get-pip.py | python3 \
     && pip3 install --no-cache-dir -r /tmp/requirements.txt \
+    && pip3 install --force-reinstall --no-binary :all: cffi \
     \
     && find /usr/local \
         \( -type d -a -name test -o -name tests -o -name '__pycache__' \) \
