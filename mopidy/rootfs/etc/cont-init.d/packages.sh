@@ -16,7 +16,7 @@ fi
 
 if bashio::config.has_value 'python_packages'; then
     for package in $(bashio::config 'python_packages'); do
-        pip3 install --force-reinstall --no-binary "$package" \
+        pip3 install --force-reinstall --no-binary :all: "$package" \
             || bashio::exit.nok "Failed installing package ${package}"
     done
 fi
