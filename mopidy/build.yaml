@@ -1,6 +1,8 @@
 ---
 build_from:
-  amd64: ghcr.io/hassio-addons/debian-base/amd64:6.1.3
-codenotary:
-  base_image: codenotary@frenck.dev
-  signer: codenotary@frenck.dev
+  amd64: docker.io/thibaudmathieu/mopidy-hassio:latest
+labels:
+  org.opencontainers.image.title: "Home Assistant Add-on: Mopidy"
+  org.opencontainers.image.description: "Media player Mopidy"
+  org.opencontainers.image.source: "https://github.com/enlight3d/addon-mopidy"
+  org.opencontainers.image.licenses: "Apache License 2.0"
