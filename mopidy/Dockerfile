@@ -10,11 +10,14 @@ COPY requirements.txt /tmp/
 
 # Setup base
 # hadolint ignore=DL3008
-RUN mkdir -p /usr/local/share/keyrings 
-RUN curl -L https://apt.mopidy.com/mopidy.gpg -o /usr/local/share/keyrings/mopidy-archive-keyring.gpg 
-RUN curl -L https://apt.mopidy.com/mopidy.list -o /etc/apt/sources.list.d/mopidy.list 
-RUN apt-get update 
-RUN apt-get install -y --no-install-recommends \
+RUN \
+    mkdir -p /usr/local/share/keyrings \
+    && curl -L https://apt.mopidy.com/mopidy.gpg -o /usr/local/share/keyrings/mopidy-archive-keyring.gpg \
+    && curl -L https://apt.mopidy.com/mopidy.list -o /etc/apt/sources.list.d/mopidy.list \
+    \
+    && apt-get update \
+    \
+    && apt-get install -y --no-install-recommends \
         build-essential=12.9 \
         git=1:2.30.2-1 \
         gstreamer1.0-alsa=1.18.4-2 \
@@ -39,15 +42,18 @@ RUN apt-get install -y --no-install-recommends \
         mopidy-mpd=3.3.0-1 \
         mopidy-podcast=3.0.1-1 \
         mopidy-soundcloud=3.0.1-1 \
-        mopidy-tunein=1.1.0-1 
-RUN curl https://bootstrap.pypa.io/get-pip.py | python3
-RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
-RUN pip3 install --force-reinstall --no-binary :all: cffi
-RUN find /usr/local \
+        mopidy-tunein=1.1.0-1 \
+    \
+    && curl https://bootstrap.pypa.io/get-pip.py | python3 \
+    && pip3 install --no-cache-dir -r /tmp/requirements.txt \
+    && pip3 install --force-reinstall --no-binary :all: cffi \
+    \
+    && find /usr/local \
         \( -type d -a -name test -o -name tests -o -name '__pycache__' \) \
         -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
         -exec rm -rf '{}' + \
-RUN apt-get purge -y --auto-remove \
+    \
+    && apt-get purge -y --auto-remove \
         libffi-dev \
         libxml2-dev \
         libxslt1-dev \
@@ -56,11 +62,11 @@ RUN apt-get purge -y --auto-remove \
         gcc \
         python-dev \
         dpkg-dev \
-RUN rm -fr \
+    && rm -fr \
         /var/{cache,log}/* \
         /var/lib/apt/lists/* \
         /root/.cache \
-RUN find /tmp/ -mindepth 1  -delete
+    && find /tmp/ -mindepth 1  -delete
 
 # Move access.log to stdout and error.log to stderr
 RUN mkdir -p /var/log/nginx && ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
