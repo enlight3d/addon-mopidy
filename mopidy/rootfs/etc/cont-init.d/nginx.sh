@@ -4,7 +4,7 @@
 # Configures NGINX
 # ==============================================================================
 
-Generate Ingress configuration
+# Generate Ingress configuration
 bashio::var.json \
     interface "$(bashio::addon.ip_address)" \
     entry "$(bashio::addon.ingress_entry)" \
