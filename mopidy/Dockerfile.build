@@ -45,9 +45,8 @@ RUN \
         mopidy-podcast=3.0.1-1 \
         mopidy-soundcloud=3.0.1-1 \
         mopidy-tunein=1.1.0-1
-RUN apt-get install -y --no-install-recommends libpq-dev python-dev libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libffi-dev libjpeg-dev zlib1g-dev gcc
+
 RUN curl https://bootstrap.pypa.io/get-pip.py | python3 
-RUN pip install --no-cache-dir cffi
 RUN pip3 install --no-cache-dir -r /tmp/requirements.txt \
     \
     && find /usr/local \
@@ -104,8 +103,3 @@ LABEL \
     org.opencontainers.image.created=${BUILD_DATE} \
     org.opencontainers.image.revision=${BUILD_REF} \
     org.opencontainers.image.version=${BUILD_VERSION}
-
-
-# COPY ./run.sh /run.sh
-# RUN chmod +x /run.sh
-# ENTRYPOINT /run.sh
